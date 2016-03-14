@@ -1,5 +1,5 @@
 /**
- * 
+ *
  */
 package util;
 
@@ -12,31 +12,35 @@ import java.util.Scanner;
  * @author Gabriel Klockner
  */
 public class LeitorArquivo {
-	public static void main(String[] args) {
-		Scanner ler = new Scanner(System.in);
-		
-		System.out.println("Informe o nome do arquivo de texto:\n");
-		String nome = ler.nextLine();
-		
-		System.out.println("Conte�do do arquivo:\n");
-		try {
-			FileReader arq = new FileReader(nome);
-			BufferedReader lerArq = new BufferedReader(arq);
-			
-			String linha = lerArq.readLine();
-			
-			while (linha != null) {
-				System.out.printf("%s \n", linha);
-				
-				linha = lerArq.readLine();
-			}
-			
-			arq.close();
-			ler.close();
-		} catch (IOException e) {
-			System.err.printf("Erro ao abrir arquivo: %s. \n", e.getMessage());
-		}
-		
-		System.out.println();
-	}
+
+    public String lerArquivo() {
+        Scanner ler = new Scanner(System.in);
+        StringBuilder sb = new StringBuilder();
+
+        System.out.println("Informe o nome do arquivo de texto:");
+        String nome = ler.nextLine();
+
+        System.out.println("CONTEUDO DO ARQUIVO:\n");
+        try {
+            FileReader arq = new FileReader(nome);
+            BufferedReader lerArq = new BufferedReader(arq);
+
+            String linha = lerArq.readLine();
+
+            while (linha != null) {
+                sb.append(linha).append("\n");
+
+                linha = lerArq.readLine();
+            }
+            
+            System.out.println(sb.toString());
+            
+            arq.close();
+            ler.close();
+        } catch (IOException e) {
+            System.err.printf("Erro ao abrir arquivo: %s. \n", e.getMessage());
+        }
+        
+        return sb.toString();
+    }
 }
