@@ -18,8 +18,14 @@ public class Main {
         String mensagem = leitorArquivo.lerArquivo();
         
         Cifrador cifrador = new Cifrador();
-        String mensagemCifrada = cifrador.cifra(mensagem, 1, false);
+        cifrador.descobrirCifra(mensagem);
         
-        cifrador.decifra(mensagemCifrada, 1);
+        cifrador.imprimirListaReferencia();
+        cifrador.imprimirListaTextoFechado();
+        
+        cifrador.fazMatch();
+        
+//        String mensagemCifrada = cifrador.cifra(mensagem, 1, false);
+//        cifrador.decifra(mensagemCifrada, 1);
     }
 }
