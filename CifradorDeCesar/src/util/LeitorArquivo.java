@@ -5,6 +5,7 @@ package util;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.util.Scanner;
 
@@ -42,5 +43,21 @@ public class LeitorArquivo {
         }
         
         return sb.toString();
+    }
+    
+    public void criarArquivo(StringBuilder conteudo, boolean isVernan) {
+        try {
+            if (isVernan) {
+                try (FileWriter fileWriter = new FileWriter("texto-abertoVernan.txt", false)) {
+                    fileWriter.write(conteudo.toString());
+                }
+            } else {
+                try (FileWriter fileWriter = new FileWriter("texto-aberto.txt", false)) {
+                    fileWriter.write(conteudo.toString());
+                }
+            }
+        } catch (IOException e) {
+            System.out.println(e.getMessage()); 
+       }
     }
 }

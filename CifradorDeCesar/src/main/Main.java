@@ -18,14 +18,21 @@ public class Main {
         String mensagem = leitorArquivo.lerArquivo();
         
         Cifrador cifrador = new Cifrador();
-        cifrador.descobrirCifra(mensagem);
+        cifrador.analisarCifra(mensagem);
         
         cifrador.imprimirListaReferencia();
         cifrador.imprimirListaTextoFechado();
         
-        cifrador.fazMatch();
+        int chave = cifrador.encontrarChave();
+        
+        //False pq não vai usar pra vernan (TEM QUE TER TRUE NOS 2)
+        StringBuilder mensagemDecifrada = cifrador.decifraUniversoProfessor(mensagem, chave, true);
+        
+        //False pra não gerar arquivo pra usar em vernan (TEM QUE TER TRUE NOS 2)
+        leitorArquivo.criarArquivo(mensagemDecifrada, true);
         
 //        String mensagemCifrada = cifrador.cifra(mensagem, 1, false);
-//        cifrador.decifra(mensagemCifrada, 1);
+//        cifrador.decifra(mensagemCifrada, chave);
+        
     }
 }
